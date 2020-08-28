@@ -1,5 +1,4 @@
 import java.util.*;
-//check if it is an uppercase alphabet
 class AlphabetChecker{
   String alphabets="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   boolean checker(char c)
@@ -16,7 +15,6 @@ class AlphabetChecker{
 class PlayFairAlgo{
        AlphabetChecker b=new AlphabetChecker();
        char keyMatrix[][]=new char[5][5];  
-       //check for repitition
        boolean repeat(char c)
        {
            if(!b.checker(c))
@@ -33,7 +31,7 @@ class PlayFairAlgo{
                 }
                 return false;
        }
-       //insertion of key followed by non matched alphabets
+       
        void insertKey(String key)
        {
             key=key.toUpperCase();
@@ -70,8 +68,7 @@ class PlayFairAlgo{
                    b=0;
                    a++;
             }
-            // print matrix
-            System.out.println("-Key Matrix-");
+             System.out.println("-Key Matrix-");
             for(int i=0;i < 5;i++)
             {
                 System.out.println();
@@ -82,7 +79,7 @@ class PlayFairAlgo{
             }
             
        }
-       // row index 
+       
        int rowPos(char c)
        {
              for(int i=0;i < keyMatrix.length;i++)
@@ -95,7 +92,7 @@ class PlayFairAlgo{
                 }
              return -1;
        }
-       // column index
+       
        int columnPos(char c)
        {
              for(int i=0;i < keyMatrix.length;i++)
@@ -108,8 +105,8 @@ class PlayFairAlgo{
                 }
              return -1;
        }
-       // encryption
-       String encryption(String plain)
+       
+       String encryptChar(String plain)
        {
            plain=plain.toUpperCase();
            char a=plain.charAt(0),b=plain.charAt(1);
@@ -154,8 +151,8 @@ class PlayFairAlgo{
        
        
        
-       // feeding two at a time to encrypt
-       String Encryptfeeder(String plainText,String key)
+       
+       String Encrypt(String plainText,String key)
        {
            insertKey(key);
            String cipherText="";
@@ -167,13 +164,13 @@ class PlayFairAlgo{
            
            for(int i=0;i < len-1;i=i+2)
            {
-              cipherText+=encryption(plainText.substring(i,i+2)); 
+              cipherText+=encryptChar(plainText.substring(i,i+2)); 
            }
            return cipherText;
        }
        
-       // decryption
-       String decryption(String cipher)
+       
+       String decryptChar(String cipher)
        {
            cipher=cipher.toUpperCase();
            char a=cipher.charAt(0),b=cipher.charAt(1);
@@ -218,8 +215,8 @@ class PlayFairAlgo{
        
        
        
-       // feed two at a time to decrypt
-       String Decryptfeeder(String cipherText,String key)
+       
+       String Decrypt(String cipherText,String key)
        {
            String plainText="";
            cipherText=cipherText.replaceAll("j", "i");
@@ -228,7 +225,7 @@ class PlayFairAlgo{
            int len=cipherText.length();
            for(int i=0;i < len-1;i=i+2)
            {
-              plainText+=decryption(cipherText.substring(i,i+2));      
+              plainText+=decryptChar(cipherText.substring(i,i+2));      
            }
            return plainText;
        }
@@ -245,18 +242,17 @@ class playfair{
 	                
             System.out.println("Enter plaintext:");
             plainText=scn.nextLine();
-            // check length of string and append with "Z" if odd
 	    if(plainText.length() %2!=0)
-		        plainText=plainText + "Z";
+		plainText=plainText + "Z";
             
             System.out.println("Enter Key:");
             key=scn.nextLine();
             
-            cipherText=p.Encryptfeeder(plainText,key);
+            cipherText=p.Encrypt(plainText,key);
             
            System.out.println("\nEncrypted text:");
            System.out.println("\n"+cipherText);
-           String encryptedText=p.Decryptfeeder(cipherText, key);
+           String encryptedText=p.Decrypt(cipherText, key);
            System.out.println("Decrypted text:" );
            System.out.println("\n"+encryptedText);
            
