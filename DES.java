@@ -299,8 +299,6 @@ class DES {
 		}
 		return answer;
 	}
-}
-class Main {
   private static int[] hexToBits(String hexValue) {
     int[] bits = new int[64];
     for(int i=0; i < hexValue.length(); i++) {
